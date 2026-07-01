@@ -42,4 +42,15 @@ if (!process.env.VERCEL) {
   });
 }
 
+// Default root route
+serverconnection.get('/', (req, res) => {
+  res.status(200).json({
+    message: 'Backend server is running successfully on Vercel!',
+  });
+});
+
+serverconnection.get('/health', (req, res) => {
+  res.status(200).json({ status: 'ok' });
+});
+
 export default serverconnection;
