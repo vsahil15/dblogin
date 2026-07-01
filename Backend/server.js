@@ -35,7 +35,11 @@ serverconnection.use('/api/v1/auth', authRegisterRoutes);
 
 await connectDB();
 
-const PORT = process.env.PORT || 3000;
-serverconnection.listen(PORT, () => {
-  console.log(`server is running on port ${PORT}`);
-});
+if (!process.env.VERCEL) {
+  const PORT = process.env.PORT || 3000;
+  serverconnection.listen(PORT, () => {
+    console.log(`server is running on port ${PORT}`);
+  });
+}
+
+export default serverconnection;
