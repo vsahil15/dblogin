@@ -12,6 +12,8 @@ serverconnection.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   'http://localhost:5173',
   'http://localhost:5174',
+  'https://dblogin-57xc.vercel.app',
+  'https://dblogin.vercel.app',
   ...(process.env.ALLOWED_ORIGINS
     ? process.env.ALLOWED_ORIGINS.split(',').map((origin) => origin.trim()).filter(Boolean)
     : []),
@@ -22,7 +24,7 @@ const corsOptions = {
     if (!origin || allowedOrigins.includes(origin)) {
       callback(null, true);
     } else {
-      callback(new Error('CORS policy violation'));
+      callback(null, false);
     }
   },
   credentials: true,
